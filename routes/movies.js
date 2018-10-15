@@ -3,7 +3,7 @@ const router = express.Router();
 
 // Models
 
-const Movie = require('../models/Movies');
+const Movie = require('../models/Movie');
 
 router.get('/',(req,res) => {
    const promise = Movie.find({ });
