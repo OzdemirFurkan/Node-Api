@@ -86,23 +86,16 @@ router.delete('/:movie_id',(req,res,next) => {
 
 
 
-/* GET users listing. */
 router.post('/', (req, res, next) => {
-    const {title,imdb_score,category,country,year} = req.body;
+    // const { title, imdb_score, category, country, year } = req.body;
 
-    const movie = new Movie({
-        title: title,
-        imdb_score: imdb_score,
-        category: category,
-        country: country,
-        year: year
-    });
+    const movie = new Movie(req.body);
+    const promise = movie.save();
 
-    movie.save((err, data) => {
-        if(err){
-            res.json(err);
-        }
+    promise.then((data) => {
         res.json(data);
+    }).catch((err) => {
+        res.json(err);
     });
 });
 
